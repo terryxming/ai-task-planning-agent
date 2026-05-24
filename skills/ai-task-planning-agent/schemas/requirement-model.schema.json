@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/ai-task-planning-agent/requirement-model.schema.json",
+  "title": "Requirement Discovery and Modeling Result",
+  "type": "object",
+  "required": [
+    "raw_idea",
+    "trigger_reasons",
+    "problem_statement",
+    "current_state",
+    "target_state",
+    "target_users",
+    "usage_scenarios",
+    "jobs_to_be_done",
+    "desired_outputs",
+    "scope_in",
+    "scope_out",
+    "constraints",
+    "success_criteria",
+    "failure_criteria",
+    "requirement_groups",
+    "priorities",
+    "validation_evidence",
+    "blocking_questions"
+  ],
+  "properties": {
+    "raw_idea": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trigger_reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "problem_statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "current_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_users": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "usage_scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "jobs_to_be_done": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "desired_outputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope_in": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope_out": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "success_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "failure_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirement_groups": {
+      "type": "array",
+      "minItems": 1
+    },
+    "priorities": {
+      "type": "array",
+      "minItems": 1
+    },
+    "validation_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocking_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

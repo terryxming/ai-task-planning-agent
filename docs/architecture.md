@@ -10,9 +10,11 @@ AI Task Planning Agent 采用一个入口 Skill、多个 reference manuals、JSO
 
 `references/` 存放专业模块手册，覆盖 orchestration、clarification、Agile value planning、harness execution planning、role decisions、delivery packaging、release gates 和 governance。
 
+v0.3 起新增 `Requirement Discovery & Modeling Engine`。它位于 Clarification Engine 和 Agile Value Planner 之间，负责把模糊想法挖掘并建模为 `requirement-model.json`。
+
 ## 事实源
 
-`package-manifest.json`、`execution-manifest.json`、`tool-contract-matrix.json` 和 `eval-plan.json` 是机器可读事实源。Markdown 文件只作为人工审阅视图。
+`package-manifest.json`、`requirement-model.json`、`execution-manifest.json`、`tool-contract-matrix.json` 和 `eval-plan.json` 是机器可读事实源。Markdown 文件只作为人工审阅视图。
 
 ## 确定性门禁
 
@@ -25,3 +27,7 @@ AI Task Planning Agent 采用一个入口 Skill、多个 reference manuals、JSO
 ## v0.2 调整
 
 v0.2 把默认表达语言调整为中文，并把 schema 文件接入验证流程。Evaluator 可以按需写入 `evaluation-result.json`，用于审计和发布记录。
+
+## v0.3 调整
+
+v0.3 把需求挖掘与建模升级为不可跳过的正式阶段。没有 `requirement-model.json`，或需求模型缺少问题定义、目标用户、使用场景、JTBD、边界、成功标准，Evaluator 必须 block。

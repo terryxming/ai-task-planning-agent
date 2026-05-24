@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## v0.3.0-alpha
+
+- 新增 Requirement Discovery & Modeling Engine，作为 Clarification Engine 和 Agile Value Planner 之间的独立必经模块。
+- `requirement-model.json` 升级为 Task Execution Pack 必需机器事实源，不允许例外。
+- 新增 `requirement-model.schema.json` 和 `validate_requirement_model.py`。
+- Evaluator 接入 requirement model release gate。
+- Fixtures、artifact index、README、Skill、architecture docs 和 tests 同步 v0.3 契约。
+- 增加 `missing-requirement-model` negative fixture。
+- 保持 release status 为 alpha。
+
 ## v0.2.0-alpha
 
 - 默认中文化 README、Skill 入口、reference manuals、examples 和 release docs。

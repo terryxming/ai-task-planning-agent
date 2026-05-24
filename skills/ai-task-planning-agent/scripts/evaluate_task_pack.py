@@ -10,6 +10,7 @@ from typing import Any
 
 from validate_execution_manifest import validate as validate_execution_manifest
 from validate_package_manifest import validate as validate_package_manifest
+from validate_requirement_model import validate as validate_requirement_model
 from schema_validator import load_schema, validate_schema
 
 
@@ -102,6 +103,10 @@ def evaluate(task_pack_dir: str | Path) -> dict[str, Any]:
     package_result = validate_package_manifest(pack_dir)
     hard_failures.extend(f"package-manifest: {error}" for error in package_result["errors"])
     warnings.extend(f"package-manifest: {warning}" for warning in package_result["warnings"])
+
+    requirement_result = validate_requirement_model(pack_dir)
+    hard_failures.extend(f"requirement-model: {error}" for error in requirement_result["errors"])
+    warnings.extend(f"requirement-model: {warning}" for warning in requirement_result["warnings"])
 
     execution_result = validate_execution_manifest(pack_dir)
     hard_failures.extend(f"execution-manifest: {error}" for error in execution_result["errors"])

@@ -37,6 +37,7 @@ WAIVER_REQUIRED_FIELDS = [
 
 REQUIRED_ARTIFACTS = [
     "package-manifest.json",
+    "requirement-model.json",
     "task-brief.md",
     "agile-plan.md",
     "execution-manifest.json",

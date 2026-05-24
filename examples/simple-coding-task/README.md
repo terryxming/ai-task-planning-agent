@@ -7,6 +7,7 @@
 ## 预期 Task Execution Pack 文件
 
 - `package-manifest.json`
+- `requirement-model.json`
 - `task-brief.md`
 - `agile-plan.md`
 - `execution-manifest.json`

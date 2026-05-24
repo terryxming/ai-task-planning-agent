@@ -11,5 +11,6 @@
 - [x] CHANGELOG 已更新。
 - [x] v0.1 baseline 已打 tag。
 - [x] v0.2 language policy 已记录并校验。
+- [x] v0.3 requirement model 必需契约已记录并校验。
 
-Release status: `v0.2.0-alpha`。
+Release status: `v0.3.0-alpha`。

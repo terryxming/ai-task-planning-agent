@@ -47,6 +47,11 @@ class PackageValidationTests(unittest.TestCase):
         self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
         self.assertIn("recovery_paths", result.stdout)
 
+    def test_missing_requirement_model_fixture_fails(self):
+        result = self.run_script("validate_package_manifest.py", "missing-requirement-model")
+        self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+        self.assertIn("requirement-model.json", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

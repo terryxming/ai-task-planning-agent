@@ -4,6 +4,8 @@
 
 某个 pack 的 manifest 看似完整，但 `execution-manifest.json` 中 `recovery_paths` 是空数组。
 
+v0.3 起，如果缺少 `requirement-model.json`，也必须被 evaluator 阻断，而且不允许例外。
+
 ## 预期硬失败
 
 ```bash

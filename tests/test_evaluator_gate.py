@@ -38,6 +38,12 @@ class EvaluatorGateTests(unittest.TestCase):
         self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
         self.assertIn('"release_recommendation": "block"', result.stdout)
 
+    def test_missing_requirement_model_returns_two(self):
+        result = self.run_evaluator("missing-requirement-model")
+        self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+        self.assertIn('"release_recommendation": "block"', result.stdout)
+        self.assertIn("requirement-model.json", result.stdout)
+
     def test_markdown_manifest_conflict_returns_two(self):
         result = self.run_evaluator("markdown-manifest-conflict")
         self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
