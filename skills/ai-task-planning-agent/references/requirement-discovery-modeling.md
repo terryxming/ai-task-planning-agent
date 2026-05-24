@@ -6,6 +6,8 @@
 
 该模块不是继续“随便追问”，而是使用规范的需求分析、需求挖掘和需求建模方法，把模糊想法转化为 `requirement-model.json`。
 
+v0.4 起，本模块的输入必须包括已确认的 `clarification-session.json`。未完成追问、挑刺、角色参与和用户确认时，不得生成 ready 状态的 `requirement-model.json`。
+
 ## 工作流
 
 1. 原始想法归档：保留用户原始表达，避免过早改写。

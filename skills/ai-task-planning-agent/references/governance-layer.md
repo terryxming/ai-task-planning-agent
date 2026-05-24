@@ -2,7 +2,7 @@
 
 ## 职责
 
-治理 schemas、manuals、fixtures、scripts、tests、release checklist、兼容性和 rollback notes。
+治理 schemas、manuals、fixtures、scripts、tests、release checklist、兼容性、rollback notes 和 `SKILL.md` 入口契约。
 
 ## 不负责
 
@@ -16,3 +16,4 @@
 - Compatibility impact
 - Release checklist status
 - Regression fixture recommendations
+- SKILL.md governance status

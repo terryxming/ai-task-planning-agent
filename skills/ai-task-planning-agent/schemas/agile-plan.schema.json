@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/ai-task-planning-agent/agile-plan.schema.json",
+  "title": "Agile Value Plan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "product_goal",
+    "user_stories",
+    "story_map",
+    "story_splitting",
+    "mvp",
+    "sprint_backlog",
+    "increment",
+    "dor",
+    "dod",
+    "eval_cases"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "user_stories": {
+      "type": "array",
+      "minItems": 1
+    },
+    "story_map": {
+      "type": "object"
+    },
+    "story_splitting": {
+      "type": "array",
+      "minItems": 1
+    },
+    "mvp": {
+      "type": "object"
+    },
+    "sprint_backlog": {
+      "type": "array",
+      "minItems": 1
+    },
+    "increment": {
+      "type": "object"
+    },
+    "dor": {
+      "type": "array",
+      "minItems": 1
+    },
+    "dod": {
+      "type": "array",
+      "minItems": 1
+    },
+    "eval_cases": {
+      "type": "array",
+      "minItems": 1
+    }
+  },
+  "additionalProperties": true
+}

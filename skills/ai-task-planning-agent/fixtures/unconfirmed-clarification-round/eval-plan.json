@@ -1,0 +1,37 @@
+{
+  "test_cases": [
+    "Valid task pack contains all required files and passes validation scripts."
+  ],
+  "eval_cases": [
+    "Evaluator returns status pass when no hard failures exist."
+  ],
+  "negative_cases": [
+    "Missing tool contract blocks release.",
+    "Blocking open question without waiver blocks release.",
+    "Missing recovery path blocks release.",
+    "Markdown manifest conflict blocks release."
+  ],
+  "pass_criteria": [
+    "All required files exist.",
+    "No hard failures exist.",
+    "Release recommendation is pass."
+  ],
+  "hard_failures": [
+    "Missing required file.",
+    "Blocking question without waiver.",
+    "Empty recovery paths.",
+    "Empty trace requirements.",
+    "Empty negative cases.",
+    "Markdown manifest conflict marker present."
+  ],
+  "manual_review_required": [
+    "Review human waivers before release."
+  ],
+  "regression_baseline": [
+    "valid-task-pack",
+    "missing-tool-contract",
+    "blocking-open-question",
+    "missing-recovery-path",
+    "markdown-manifest-conflict"
+  ]
+}

@@ -1,0 +1,135 @@
+{
+    "schema_version":  "0.4",
+    "product_goal":  "帮助 AI Agent builder 生成经过校验的 Task Execution Pack，让下游 coding agent 不必重新澄清核心需求即可开始执行。",
+    "user_stories":  [
+                         {
+                             "id":  "US-001",
+                             "user_role":  "AI Agent builder",
+                             "goal":  "把模糊 AI builder 任务转成可验证执行包",
+                             "value":  "减少下游 coding agent 因需求不清造成的返工",
+                             "story":  "作为 AI Agent builder，我希望 Agent 能把模糊任务转成包含机器事实源和验证门禁的 Task Execution Pack，以便下游 coding agent 可以安全执行。",
+                             "acceptance_criteria":  [
+                                                         "输出必须包含 package-manifest.json、clarification-session.json、requirement-model.json、agile-plan.json 和 execution-manifest.json。",
+                                                         "所有 blocking questions 必须为空。",
+                                                         "Evaluator 必须返回 pass。"
+                                                     ],
+                             "invest":  {
+                                            "independent":  "可独立验证一个 Task Execution Pack 是否 ready。",
+                                            "negotiable":  "具体 artifact 内容可根据任务类型调整。",
+                                            "valuable":  "直接降低下游执行返工。",
+                                            "estimable":  "可按 artifact 数量、schema 和 fixture 覆盖估算。",
+                                            "small":  "MVP 聚焦单个 pack 生成与验证。"
+                                        }
+                         }
+                     ],
+    "story_map":  {
+                      "goal":  "从模糊想法到可交接执行包",
+                      "activities":  [
+                                         {
+                                             "activity":  "澄清与建模",
+                                             "mvp_stories":  [
+                                                                 "US-001"
+                                                             ],
+                                             "enhancement_stories":  [
+
+                                                                     ],
+                                             "future_stories":  [
+
+                                                                ]
+                                         },
+                                         {
+                                             "activity":  "执行规划",
+                                             "mvp_stories":  [
+                                                                 "US-001"
+                                                             ],
+                                             "enhancement_stories":  [
+
+                                                                     ],
+                                             "future_stories":  [
+
+                                                                ]
+                                         },
+                                         {
+                                             "activity":  "验证交付",
+                                             "mvp_stories":  [
+                                                                 "US-001"
+                                                             ],
+                                             "enhancement_stories":  [
+
+                                                                     ],
+                                             "future_stories":  [
+
+                                                                ]
+                                         }
+                                     ]
+                  },
+    "story_splitting":  [
+                            {
+                                "source_story":  "US-001",
+                                "split_stories":  [
+                                                      "澄清事实源",
+                                                      "敏捷规划事实源",
+                                                      "执行契约",
+                                                      "release gate"
+                                                  ],
+                                "mvp_candidate":  true
+                            }
+                        ],
+    "mvp":  {
+                "scope":  [
+                              "单个 Task Execution Pack 的生成和验证"
+                          ],
+                "excluded":  [
+                                 "连接生产环境",
+                                 "替代 Jira 或 Linear",
+                                 "直接执行用户业务代码"
+                             ],
+                "validation_hypothesis":  "如果 pack 同时通过必需事实源、执行契约和 evaluator，后续 coding agent 的重复澄清会减少。"
+            },
+    "sprint_backlog":  [
+                           {
+                               "id":  "SB-001",
+                               "story_id":  "US-001",
+                               "task":  "生成必需 JSON 事实源并运行 release gate",
+                               "type":  "Eval",
+                               "acceptance":  "所有 validator 通过，negative fixtures block。"
+                           }
+                       ],
+    "increment":  {
+                      "description":  "一个包含澄清、需求、敏捷、执行和评估事实源的可验证 Task Execution Pack。",
+                      "verification":  "运行 evaluate_task_pack.py 返回 pass。"
+                  },
+    "dor":  [
+                "原始想法已保留",
+                "用户、场景、边界、成功标准已确认",
+                "blocking questions 为空"
+            ],
+    "dod":  [
+                "Acceptance Criteria 满足",
+                "Evaluator pass",
+                "negative fixtures block",
+                "artifact index 可渲染"
+            ],
+    "eval_cases":  [
+                       {
+                           "id":  "EV-001",
+                           "story_id":  "US-001",
+                           "type":  "normal",
+                           "input":  "完整 valid-task-pack",
+                           "expected_output":  "release_recommendation 为 pass",
+                           "pass_criteria":  [
+                                                 "evaluate_task_pack.py exit code 0"
+                                             ]
+                       },
+                       {
+                           "id":  "EV-002",
+                           "story_id":  "US-001",
+                           "type":  "negative",
+                           "input":  "缺少 agile-plan.json",
+                           "expected_output":  "release_recommendation 为 block",
+                           "pass_criteria":  [
+                                                 "evaluate_task_pack.py exit code 2"
+                                             ]
+                       }
+                   ]
+}

@@ -1,0 +1,139 @@
+{
+    "schema_version":  "0.4",
+    "original_idea":  "我想把模糊 AI builder 任务规划成可验证执行包。",
+    "rounds":  [
+                   {
+                       "round_id":  "round-1",
+                       "questions":  [
+                                         {
+                                             "sequence":  1,
+                                             "question":  "这个执行包最主要要服务哪类 AI builder？",
+                                             "rationale":  "目标用户会影响输出粒度、术语和验收标准。",
+                                             "consequence_if_unanswered":  "下游规划可能泛化，无法判断什么信息必须进入 pack。",
+                                             "suggested_answer":  "主要服务创建 Agent、Skill 或复杂 coding task 的 AI builder。"
+                                         },
+                                         {
+                                             "sequence":  2,
+                                             "question":  "用户现在遇到的最大返工来源是什么？",
+                                             "rationale":  "返工来源能暴露真实问题，而不只是功能愿望。",
+                                             "consequence_if_unanswered":  "Agent 可能只生成漂亮文档，却没有减少执行返工。",
+                                             "suggested_answer":  "最大返工来自需求没澄清、执行边界没定义、评估样例不足。"
+                                         },
+                                         {
+                                             "sequence":  3,
+                                             "question":  "哪些事情明确不应该由该 agent 做？",
+                                             "rationale":  "非目标能控制范围和权限风险。",
+                                             "consequence_if_unanswered":  "Agent 可能越权执行用户业务代码或替代项目管理工具。",
+                                             "suggested_answer":  "不执行用户业务代码，不连接生产环境，不替代 Jira 或 Linear。"
+                                         },
+                                         {
+                                             "sequence":  4,
+                                             "question":  "什么样的输出才算能交给下游 coding agent？",
+                                             "rationale":  "交付标准决定 pack 的必需 artifact 和 release gate。",
+                                             "consequence_if_unanswered":  "下游 agent 仍需要重新澄清，pack 无法真正交接。",
+                                             "suggested_answer":  "必须包含机器事实源、执行契约、工具边界、eval 和 artifact index。"
+                                         },
+                                         {
+                                             "sequence":  5,
+                                             "question":  "失败样例应该覆盖哪些风险？",
+                                             "rationale":  "负面样例决定 release gate 能否防止错误交付。",
+                                             "consequence_if_unanswered":  "Evaluator 可能只验证 happy path，无法挡住缺失契约的 pack。",
+                                             "suggested_answer":  "覆盖缺少工具契约、阻塞问题、缺少恢复路径和事实冲突。"
+                                         }
+                                     ],
+                       "user_answer":  "目标是服务 AI Agent builder，把模糊想法转成不需要下游重新澄清的执行包。",
+                       "critiques":  [
+                                         {
+                                             "role":  "Opposition reviewer",
+                                             "issue":  "目标仍可能把需求建模和敏捷拆解混在一起。",
+                                             "impact":  "如果没有机器事实源分层，下游无法判断哪个 artifact 是事实源。",
+                                             "fields":  [
+                                                            "desired_outputs",
+                                                            "scope_in",
+                                                            "success_criteria"
+                                                        ],
+                                             "blocking":  false,
+                                             "recommendation":  "明确 JSON 是机器事实源，Markdown 只是人工审阅视图。"
+                                         }
+                                     ],
+                       "role_contributions":  [
+                                                  {
+                                                      "role":  "Product owner",
+                                                      "statement":  "该 agent 的价值是减少模糊需求进入执行后的返工。",
+                                                      "challenge":  "只生成文档不等于减少返工。",
+                                                      "supplement":  "必须有 release gate 证明 pack 可交接。",
+                                                      "field_updates":  [
+
+                                                                        ],
+                                                      "blocking":  false
+                                                  },
+                                                  {
+                                                      "role":  "Requirement analyst",
+                                                      "statement":  "需求模型必须保留原始想法和真实问题。",
+                                                      "challenge":  "不能把建议回答自动当作用户事实。",
+                                                      "supplement":  "需要 trace 到 requirement-model.json。",
+                                                      "field_updates":  [
+                                                                            "raw_idea",
+                                                                            "validation_evidence"
+                                                                        ],
+                                                      "blocking":  false
+                                                  },
+                                                  {
+                                                      "role":  "Agile planner",
+                                                      "statement":  "规划必须产生可验收的 story 和 eval case。",
+                                                      "challenge":  "只有 backlog item 不足以进入开发。",
+                                                      "supplement":  "需要 AC、INVEST、MVP 和 Increment。",
+                                                      "field_updates":  [
+                                                                            "requirement_groups",
+                                                                            "priorities"
+                                                                        ],
+                                                      "blocking":  false
+                                                  },
+                                                  {
+                                                      "role":  "Harness engineer",
+                                                      "statement":  "下游执行需要工具契约和恢复路径。",
+                                                      "challenge":  "缺少 rollback 会让失败不可控。",
+                                                      "supplement":  "execution manifest 必须可追踪。",
+                                                      "field_updates":  [
+                                                                            "constraints",
+                                                                            "failure_criteria"
+                                                                        ],
+                                                      "blocking":  false
+                                                  },
+                                                  {
+                                                      "role":  "Governance owner",
+                                                      "statement":  "新增事实源必须纳入 release gate。",
+                                                      "challenge":  "不能靠人工记忆维护必需文件。",
+                                                      "supplement":  "package manifest 和 evaluator 都要检查。",
+                                                      "field_updates":  [
+                                                                            "desired_outputs",
+                                                                            "success_criteria"
+                                                                        ],
+                                                      "blocking":  false
+                                                  }
+                                              ],
+                       "revised_understanding":  "该 agent 服务 AI Agent builder，把模糊想法转成由 JSON 事实源支撑、可验证、可交接的 Task Execution Pack。",
+                       "user_confirmed":  true
+                   }
+               ],
+    "stage_briefs":  [
+                         {
+                             "after_round":  1,
+                             "brief":  "已确认目标用户、核心返工来源、非目标、交付标准和负面样例范围。",
+                             "user_confirmed":  true
+                         }
+                     ],
+    "blocking_questions":  [
+
+                           ],
+    "trace_to_requirement_model":  [
+                                       {
+                                           "clarification_field":  "rounds[0].revised_understanding",
+                                           "requirement_model_field":  "problem_statement"
+                                       },
+                                       {
+                                           "clarification_field":  "rounds[0].role_contributions",
+                                           "requirement_model_field":  "success_criteria"
+                                       }
+                                   ]
+}

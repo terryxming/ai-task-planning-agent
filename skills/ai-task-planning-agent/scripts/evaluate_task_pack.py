@@ -11,6 +11,8 @@ from typing import Any
 from validate_execution_manifest import validate as validate_execution_manifest
 from validate_package_manifest import validate as validate_package_manifest
 from validate_requirement_model import validate as validate_requirement_model
+from validate_clarification_session import validate as validate_clarification_session
+from validate_agile_plan import validate as validate_agile_plan
 from schema_validator import load_schema, validate_schema
 
 
@@ -104,9 +106,17 @@ def evaluate(task_pack_dir: str | Path) -> dict[str, Any]:
     hard_failures.extend(f"package-manifest: {error}" for error in package_result["errors"])
     warnings.extend(f"package-manifest: {warning}" for warning in package_result["warnings"])
 
+    clarification_result = validate_clarification_session(pack_dir)
+    hard_failures.extend(f"clarification-session: {error}" for error in clarification_result["errors"])
+    warnings.extend(f"clarification-session: {warning}" for warning in clarification_result["warnings"])
+
     requirement_result = validate_requirement_model(pack_dir)
     hard_failures.extend(f"requirement-model: {error}" for error in requirement_result["errors"])
     warnings.extend(f"requirement-model: {warning}" for warning in requirement_result["warnings"])
+
+    agile_result = validate_agile_plan(pack_dir)
+    hard_failures.extend(f"agile-plan: {error}" for error in agile_result["errors"])
+    warnings.extend(f"agile-plan: {warning}" for warning in agile_result["warnings"])
 
     execution_result = validate_execution_manifest(pack_dir)
     hard_failures.extend(f"execution-manifest: {error}" for error in execution_result["errors"])

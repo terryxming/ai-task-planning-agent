@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/ai-task-planning-agent/clarification-session.schema.json",
+  "title": "Clarification Council Session",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "original_idea",
+    "rounds",
+    "stage_briefs",
+    "blocking_questions",
+    "trace_to_requirement_model"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "original_idea": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rounds": {
+      "type": "array",
+      "minItems": 1
+    },
+    "stage_briefs": {
+      "type": "array"
+    },
+    "blocking_questions": {
+      "type": "array"
+    },
+    "trace_to_requirement_model": {
+      "type": "array",
+      "minItems": 1
+    }
+  },
+  "additionalProperties": true
+}

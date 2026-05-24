@@ -1,0 +1,105 @@
+{
+    "schema_version":  "0.1",
+    "package_id":  "missing-agile-eval-cases",
+    "created_at":  "2026-05-24",
+    "status":  "delivery_ready",
+    "target_downstream_ai":  [
+                                 "Codex",
+                                 "Claude Code"
+                             ],
+    "known_facts":  [
+                        "The agent creates Task Execution Pack artifacts for downstream coding agents.",
+                        "Machine-readable JSON files are the source of truth.",
+                        "The agent must not execute user business code."
+                    ],
+    "assumptions":  [
+                        "The downstream agent can read local Markdown and JSON files."
+                    ],
+    "open_questions":  [
+
+                       ],
+    "blocking_questions":  [
+
+                           ],
+    "quality_gates":  [
+                          {
+                              "name":  "required_files",
+                              "status":  "pass"
+                          },
+                          {
+                              "name":  "release_gate",
+                              "status":  "pass"
+                          }
+                      ],
+    "human_waivers":  [
+
+                      ],
+    "release_recommendation":  "pass",
+    "artifacts":  [
+                      {
+                          "path":  "package-manifest.json",
+                          "type":  "json",
+                          "purpose":  "Source of truth for package status, facts, artifacts, gates, waivers, and release recommendation."
+                      },
+                      {
+                          "path":  "requirement-model.json",
+                          "type":  "json",
+                          "purpose":  "需求挖掘与建模的机器事实源，记录真实问题、目标用户、使用场景、边界、优先级和验证证据。"
+                      },
+                      {
+                          "path":  "task-brief.md",
+                          "type":  "markdown",
+                          "purpose":  "Human-readable task context, goals, non-goals, assumptions, and success criteria."
+                      },
+                      {
+                          "path":  "agile-plan.md",
+                          "type":  "markdown",
+                          "purpose":  "Agile value plan with backlog, user stories, DoR, DoD, review, and retro."
+                      },
+                      {
+                          "path":  "execution-manifest.json",
+                          "type":  "json",
+                          "purpose":  "Execution contract for downstream coding agents."
+                      },
+                      {
+                          "path":  "tool-contract-matrix.json",
+                          "type":  "json",
+                          "purpose":  "Tool permission, side effect, failure, retry, rollback, and audit contract."
+                      },
+                      {
+                          "path":  "eval-plan.json",
+                          "type":  "json",
+                          "purpose":  "Evaluation and release gate cases, including negative cases."
+                      },
+                      {
+                          "path":  "role-decision-log.md",
+                          "type":  "markdown",
+                          "purpose":  "Role-owned decision log with challenges, evidence, decisions, impacted artifacts, and regression risks."
+                      },
+                      {
+                          "path":  "human-review-report.md",
+                          "type":  "markdown",
+                          "purpose":  "Human review summary for package readiness."
+                      },
+                      {
+                          "path":  "governance-report.md",
+                          "type":  "markdown",
+                          "purpose":  "Governance review for schema, fixture, script, test, and release readiness."
+                      },
+                      {
+                          "path":  "artifact-index.md",
+                          "type":  "markdown",
+                          "purpose":  "Index of package artifacts and release recommendation."
+                      },
+                      {
+                          "path":  "clarification-session.json",
+                          "type":  "json",
+                          "purpose":  "追问、挑刺、角色参与、用户确认和阶段 brief 的机器事实源。"
+                      },
+                      {
+                          "path":  "agile-plan.json",
+                          "type":  "json",
+                          "purpose":  "User Story、Acceptance Criteria、INVEST、Story Mapping、MVP、Sprint Backlog、Increment 和 Eval 的机器事实源。"
+                      }
+                  ]
+}

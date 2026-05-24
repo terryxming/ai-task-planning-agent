@@ -21,6 +21,20 @@
     "blocking_questions":  [
 
                            ],
+    "quality_gates":  [
+                          {
+                              "name":  "required_files",
+                              "status":  "pass"
+                          },
+                          {
+                              "name":  "release_gate",
+                              "status":  "block"
+                          }
+                      ],
+    "human_waivers":  [
+
+                      ],
+    "release_recommendation":  "block",
     "artifacts":  [
                       {
                           "path":  "package-manifest.json",
@@ -76,20 +90,16 @@
                           "path":  "artifact-index.md",
                           "type":  "markdown",
                           "purpose":  "Index of package artifacts and release recommendation."
+                      },
+                      {
+                          "path":  "clarification-session.json",
+                          "type":  "json",
+                          "purpose":  "追问、挑刺、角色参与、用户确认和阶段 brief 的机器事实源。"
+                      },
+                      {
+                          "path":  "agile-plan.json",
+                          "type":  "json",
+                          "purpose":  "User Story、Acceptance Criteria、INVEST、Story Mapping、MVP、Sprint Backlog、Increment 和 Eval 的机器事实源。"
                       }
-                  ],
-    "quality_gates":  [
-                          {
-                              "name":  "required_files",
-                              "status":  "pass"
-                          },
-                          {
-                              "name":  "release_gate",
-                              "status":  "block"
-                          }
-                      ],
-    "human_waivers":  [
-
-                      ],
-    "release_recommendation":  "block"
+                  ]
 }

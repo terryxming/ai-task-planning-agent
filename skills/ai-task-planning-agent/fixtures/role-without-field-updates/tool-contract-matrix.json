@@ -1,0 +1,30 @@
+{
+  "tools": [
+    {
+      "tool_name": "filesystem",
+      "purpose": "Create and update Task Execution Pack files in the requested workspace.",
+      "input_schema": {
+        "type": "object",
+        "required": ["path", "content"]
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["written_path"]
+      },
+      "side_effects": [
+        "Writes files under the requested task pack directory."
+      ],
+      "permission_level": "workspace-write",
+      "failure_modes": [
+        "Path does not exist.",
+        "File content is invalid JSON or Markdown."
+      ],
+      "retry_policy": "Fix the invalid path or content and retry once after re-validation.",
+      "rollback_policy": "Remove only generated files from the current task pack directory.",
+      "audit_evidence": [
+        "Created file list",
+        "Validation command output"
+      ]
+    }
+  ]
+}

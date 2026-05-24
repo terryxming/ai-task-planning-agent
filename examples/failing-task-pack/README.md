@@ -6,6 +6,8 @@
 
 v0.3 起，如果缺少 `requirement-model.json`，也必须被 evaluator 阻断，而且不允许例外。
 
+v0.4 起，如果缺少 `clarification-session.json` 或 `agile-plan.json`，也必须被 evaluator 阻断。
+
 ## 预期硬失败
 
 ```bash

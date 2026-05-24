@@ -16,6 +16,10 @@
 - 成功标准
 - 失败标准
 
+## Handoff
+
+Clarification Engine 只完成初步分类，不做多轮深挖。进入需求建模前，必须交给 Clarification Council Loop 完成追问、挑刺、角色参与、修正版理解和用户确认。
+
 ## 硬失败
 
 - 把假设写成事实。

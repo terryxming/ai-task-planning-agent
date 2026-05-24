@@ -15,3 +15,5 @@ Release recommendation: `block`
 | `human-review-report.md` | markdown | Human review summary for package readiness. |
 | `governance-report.md` | markdown | Governance review for schema, fixture, script, test, and release readiness. |
 | `artifact-index.md` | markdown | Index of package artifacts and release recommendation. |
+| `clarification-session.json` | json | 追问、挑刺、角色参与、用户确认和阶段 brief 的机器事实源。 |
+| `agile-plan.json` | json | User Story、Acceptance Criteria、INVEST、Story Mapping、MVP、Sprint Backlog、Increment 和 Eval 的机器事实源。 |

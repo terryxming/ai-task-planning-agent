@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## v0.4.0-alpha
+
+- 新增 Clarification Council Loop，强制追问、挑刺、角色参与、修正版理解和用户确认。
+- 新增 `clarification-session.json` 作为必需机器事实源。
+- 新增 `agile-plan.json` 作为必需机器事实源，覆盖 User Story、AC、INVEST、Story Mapping、Story Splitting、MVP、Sprint Backlog、Increment 和 Eval cases。
+- 新增 `validate_clarification_session.py`、`validate_agile_plan.py` 和 `validate_skill_entry.py`。
+- Evaluator 接入 clarification session 和 agile plan release gate。
+- 新增 SKILL.md 入口治理，防止领域方法论堆入单个入口文件。
+- 增加 v0.4 负面 fixtures 和回归测试。
+- 保持 release status 为 alpha。
+
 ## v0.3.0-alpha
 
 - 新增 Requirement Discovery & Modeling Engine，作为 Clarification Engine 和 Agile Value Planner 之间的独立必经模块。
