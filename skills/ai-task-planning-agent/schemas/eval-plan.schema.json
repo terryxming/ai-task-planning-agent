@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/ai-task-planning-agent/eval-plan.schema.json",
+  "title": "Evaluation Plan",
+  "type": "object",
+  "required": [
+    "test_cases",
+    "eval_cases",
+    "negative_cases",
+    "pass_criteria",
+    "hard_failures",
+    "manual_review_required",
+    "regression_baseline"
+  ],
+  "properties": {
+    "test_cases": {
+      "type": "array"
+    },
+    "eval_cases": {
+      "type": "array"
+    },
+    "negative_cases": {
+      "type": "array",
+      "minItems": 1
+    },
+    "pass_criteria": {
+      "type": "array"
+    },
+    "hard_failures": {
+      "type": "array"
+    },
+    "manual_review_required": {
+      "type": "array"
+    },
+    "regression_baseline": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

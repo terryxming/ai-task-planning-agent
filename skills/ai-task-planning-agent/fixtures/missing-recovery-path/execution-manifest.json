@@ -1,0 +1,63 @@
+{
+  "task_goal": "Create a validated Task Execution Pack for a downstream coding agent.",
+  "non_goals": [
+    "Do not execute user business code.",
+    "Do not connect to production.",
+    "Do not replace Jira or Linear."
+  ],
+  "input_contract": {
+    "required_inputs": ["user_request", "target_downstream_ai"],
+    "optional_inputs": ["existing_task_pack", "conversation_summary"]
+  },
+  "output_contract": {
+    "required_outputs": [
+      "package-manifest.json",
+      "task-brief.md",
+      "agile-plan.md",
+      "execution-manifest.json",
+      "tool-contract-matrix.json",
+      "eval-plan.json",
+      "role-decision-log.md",
+      "human-review-report.md",
+      "governance-report.md",
+      "artifact-index.md"
+    ]
+  },
+  "context_contracts": [
+    "Use implementation instructions and package manifests as source of truth.",
+    "Treat Markdown as review view unless it conflicts with JSON."
+  ],
+  "workflow_steps": [
+    "Clarify facts, assumptions, open questions, and blocking questions.",
+    "Create Agile value plan.",
+    "Create execution, tool, eval, and recovery contracts.",
+    "Package artifacts and run release gate."
+  ],
+  "sandbox_rules": [
+    "Write only inside the requested task pack directory.",
+    "Do not connect to production.",
+    "Do not execute user business code."
+  ],
+  "acceptance_criteria": [
+    "Required files exist.",
+    "Recovery paths and trace requirements are non-empty.",
+    "Tool contracts include side effects, permissions, failure modes, retry policy, rollback policy, and audit evidence."
+  ],
+  "failure_criteria": [
+    "Missing required machine-readable file.",
+    "Blocking question without waiver.",
+    "Markdown and manifest conflict."
+  ],
+  "trace_requirements": [
+    "Record validation command outputs.",
+    "Record evaluator status and release recommendation."
+  ],
+  "recovery_paths": [],
+  "regression_cases": [
+    "Valid fixture must pass.",
+    "Missing tool contract fixture must block.",
+    "Blocking open question fixture must block.",
+    "Missing recovery path fixture must block.",
+    "Markdown manifest conflict fixture must block."
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/ai-task-planning-agent/tool-contract-matrix.schema.json",
+  "title": "Tool Contract Matrix",
+  "type": "object",
+  "required": ["tools"],
+  "properties": {
+    "tools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "tool_name",
+          "purpose",
+          "input_schema",
+          "output_schema",
+          "side_effects",
+          "permission_level",
+          "failure_modes",
+          "retry_policy",
+          "rollback_policy",
+          "audit_evidence"
+        ],
+        "properties": {
+          "tool_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input_schema": {
+            "type": "object"
+          },
+          "output_schema": {
+            "type": "object"
+          },
+          "side_effects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "permission_level": {
+            "type": "string",
+            "minLength": 1
+          },
+          "failure_modes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "retry_policy": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rollback_policy": {
+            "type": "string",
+            "minLength": 1
+          },
+          "audit_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

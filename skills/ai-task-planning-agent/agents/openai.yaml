@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI 任务规划 Agent"
+  short_description: "把模糊 AI 构建任务规划为可验证的下游执行包"
+  default_prompt: "使用 $ai-task-planning-agent，把我的模糊任务澄清并规划成可交给下游 coding agent 执行的 Task Execution Pack。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""Evaluate a Task Execution Pack release gate."""
+
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+from typing import Any
+
+from validate_execution_manifest import validate as validate_execution_manifest
+from validate_package_manifest import validate as validate_package_manifest
+
+
+TOOL_REQUIRED_FIELDS = [
+    "side_effects",
+    "permission_level",
+    "failure_modes",
+    "retry_policy",
+    "rollback_policy",
+    "audit_evidence",
+]
+
+
+def load_json(path: Path) -> tuple[dict[str, Any] | None, str | None]:
+    try:
+        with path.open("r", encoding="utf-8") as handle:
+            data = json.load(handle)
+    except FileNotFoundError:
+        return None, f"missing required file: {path.name}"
+    except json.JSONDecodeError as exc:
+        return None, f"invalid JSON in {path.name}: {exc}"
+    if not isinstance(data, dict):
+        return None, f"{path.name} must contain a JSON object"
+    return data, None
+
+
+def has_value(value: Any) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, (list, dict)):
+        return bool(value)
+    return True
+
+
+def validate_tool_contracts(pack_dir: Path) -> list[str]:
+    failures: list[str] = []
+    data, load_error = load_json(pack_dir / "tool-contract-matrix.json")
+    if load_error:
+        return [load_error]
+
+    assert data is not None
+    tools = data.get("tools")
+    if not isinstance(tools, list) or not tools:
+        return ["tool-contract-matrix.json tools must be a non-empty array"]
+
+    for index, tool in enumerate(tools):
+        if not isinstance(tool, dict):
+            failures.append(f"tools[{index}] must be an object")
+            continue
+        for field in TOOL_REQUIRED_FIELDS:
+            if not has_value(tool.get(field)):
+                failures.append(f"tools[{index}] missing or empty required field: {field}")
+    return failures
+
+
+def validate_eval_plan(pack_dir: Path) -> list[str]:
+    data, load_error = load_json(pack_dir / "eval-plan.json")
+    if load_error:
+        return [load_error]
+
+    assert data is not None
+    negative_cases = data.get("negative_cases")
+    if not isinstance(negative_cases, list) or not negative_cases:
+        return ["eval-plan.json negative_cases must be a non-empty array"]
+    return []
+
+
+def detect_markdown_manifest_conflict(pack_dir: Path) -> list[str]:
+    task_brief_path = pack_dir / "task-brief.md"
+    try:
+        task_brief = task_brief_path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        return ["missing required file: task-brief.md"]
+    if "MANIFEST_CONFLICT" in task_brief:
+        return ["task-brief.md contains MANIFEST_CONFLICT marker"]
+    return []
+
+
+def evaluate(task_pack_dir: str | Path) -> dict[str, Any]:
+    pack_dir = Path(task_pack_dir)
+    hard_failures: list[str] = []
+    warnings: list[str] = []
+
+    package_result = validate_package_manifest(pack_dir)
+    hard_failures.extend(f"package-manifest: {error}" for error in package_result["errors"])
+    warnings.extend(f"package-manifest: {warning}" for warning in package_result["warnings"])
+
+    execution_result = validate_execution_manifest(pack_dir)
+    hard_failures.extend(f"execution-manifest: {error}" for error in execution_result["errors"])
+    warnings.extend(f"execution-manifest: {warning}" for warning in execution_result["warnings"])
+
+    hard_failures.extend(f"tool-contract-matrix: {error}" for error in validate_tool_contracts(pack_dir))
+    hard_failures.extend(f"eval-plan: {error}" for error in validate_eval_plan(pack_dir))
+    hard_failures.extend(
+        f"markdown-manifest-conflict: {error}"
+        for error in detect_markdown_manifest_conflict(pack_dir)
+    )
+
+    release_recommendation = "block" if hard_failures else "pass"
+    return {
+        "status": "fail" if hard_failures else "pass",
+        "hard_failures": hard_failures,
+        "warnings": warnings,
+        "release_recommendation": release_recommendation,
+    }
+
+
+def main(argv: list[str]) -> int:
+    if len(argv) != 2:
+        print(
+            json.dumps(
+                {
+                    "status": "fail",
+                    "hard_failures": ["usage: evaluate_task_pack.py <task-pack-dir>"],
+                    "warnings": [],
+                    "release_recommendation": "block",
+                },
+                indent=2,
+            )
+        )
+        return 2
+
+    result = evaluate(argv[1])
+    print(json.dumps(result, indent=2))
+    return 0 if result["release_recommendation"] == "pass" else 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv))

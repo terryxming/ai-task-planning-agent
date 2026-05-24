@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/ai-task-planning-agent/package-manifest.schema.json",
+  "title": "Task Execution Pack Package Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "package_id",
+    "status",
+    "target_downstream_ai",
+    "known_facts",
+    "assumptions",
+    "open_questions",
+    "blocking_questions",
+    "artifacts",
+    "quality_gates",
+    "human_waivers",
+    "release_recommendation"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "package_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_downstream_ai": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "known_facts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocking_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "type", "purpose"],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "quality_gates": {
+      "type": "array"
+    },
+    "human_waivers": {
+      "type": "array"
+    },
+    "release_recommendation": {
+      "type": "string",
+      "enum": ["pass", "block"]
+    }
+  },
+  "additionalProperties": true
+}
