@@ -1,23 +1,23 @@
-# Task Brief
+# 任务简报
 
-## Goal
+## 目标
 
-Create a Task Execution Pack for a downstream coding agent.
+为下游 coding agent 创建一个 `Task Execution Pack`。
 
-## Non-Goals
+## 非目标
 
-- Do not execute user business code.
-- Do not connect to production.
-- Do not replace Jira or Linear.
+- 不执行用户业务代码。
+- 不连接生产环境。
+- 不替代 Jira 或 Linear。
 
-## Known Facts
+## 已知事实
 
-- The agent creates Task Execution Pack artifacts for downstream coding agents.
-- Machine-readable JSON files are the source of truth.
-- The agent must not execute user business code.
+- Agent 会为下游 coding agent 创建 `Task Execution Pack` artifacts。
+- 机器可读 JSON 文件是事实源。
+- Agent 不得执行用户业务代码。
 
-## Success Criteria
+## 成功标准
 
-- Required JSON files are present.
-- Blocking questions are empty or waived.
-- Recovery paths and trace requirements are non-empty.
+- 必需 JSON 文件存在。
+- Blocking questions 为空，或已被结构化 waiver 覆盖。
+- Recovery paths 和 trace requirements 非空。

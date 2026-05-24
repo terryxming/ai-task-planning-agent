@@ -1,10 +1,10 @@
 # Delivery Packager
 
-## Responsibility
+## 职责
 
-Build the Task Execution Pack and artifact index.
+构建 `Task Execution Pack` 和 `artifact-index.md`。
 
-## Required Files
+## 必需文件
 
 - `package-manifest.json`
 - `task-brief.md`
@@ -17,8 +17,8 @@ Build the Task Execution Pack and artifact index.
 - `governance-report.md`
 - `artifact-index.md`
 
-## Hard Failures
+## 硬失败
 
-- JSON facts and Markdown facts conflict.
-- Pack lacks artifact index.
-- Machine-readable files are missing.
+- JSON 事实与 Markdown 事实冲突。
+- Pack 缺少 artifact index。
+- 缺少 machine-readable files。

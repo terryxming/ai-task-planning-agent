@@ -1,13 +1,15 @@
 # Release Checklist
 
-- [x] README reviewed.
-- [x] Skill metadata reviewed.
-- [x] Schemas parse.
-- [x] Scripts run.
-- [x] Fixtures pass or fail as expected.
-- [x] Tests pass.
-- [x] No private paths.
-- [x] No sensitive values.
-- [x] CHANGELOG updated.
+- [x] README 已审阅。
+- [x] Skill metadata 已审阅。
+- [x] Schemas 可解析。
+- [x] Scripts 可运行。
+- [x] Fixtures 按预期 pass 或 block。
+- [x] Tests 通过。
+- [x] 无私有路径。
+- [x] 无敏感值。
+- [x] CHANGELOG 已更新。
+- [x] v0.1 baseline 已打 tag。
+- [x] v0.2 language policy 已记录并校验。
 
-Release status: `v0.1.0-alpha`.
+Release status: `v0.2.0-alpha`。

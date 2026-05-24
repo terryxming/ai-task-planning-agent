@@ -1,16 +1,16 @@
 # Governance Layer
 
-## Responsibility
+## 职责
 
-Govern schemas, manuals, fixtures, scripts, tests, release checklist, compatibility, and rollback notes.
+治理 schemas、manuals、fixtures、scripts、tests、release checklist、兼容性和 rollback notes。
 
-## Does Not Do
+## 不负责
 
-- Does not modify user skills automatically.
-- Does not connect to production.
-- Does not replace project management tools.
+- 不自动修改用户 Skill。
+- 不连接生产环境。
+- 不替代项目管理工具。
 
-## Required Outputs
+## 必需输出
 
 - Governance report
 - Compatibility impact

@@ -1,27 +1,27 @@
 # Agile Value Planner
 
-## Responsibility
+## 职责
 
-Turn clarified intent into Agile value flow.
+把澄清后的意图转化为 Agile 价值流。
 
-## Required Outputs
+## 必需输出
 
 - Product Goal
-- Target users
+- 目标用户
 - Backlog items
 - User stories
-- Priorities
+- 优先级
 - DoR
 - DoD
 - Review plan
 - Retro plan
 
-## Harness Feedback Rule
+## Harness 反馈规则
 
-If Harness marks a story as untestable, unrecoverable, or not traceable, update the story, DoD, or backlog before packaging.
+如果 Harness 判断某个 story 不可测试、不可恢复或不可追踪，必须在 packaging 前更新 story、DoD 或 backlog。
 
-## Hard Failures
+## 硬失败
 
-- Only feature list, no user value.
-- No DoD.
-- Harness feedback ignored.
+- 只有功能列表，没有用户价值。
+- 缺少 DoD。
+- 忽略 Harness 反馈。

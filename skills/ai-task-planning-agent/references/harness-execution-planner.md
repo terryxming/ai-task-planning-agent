@@ -1,10 +1,10 @@
 # Harness Execution Planner
 
-## Responsibility
+## 职责
 
-Define execution reliability contracts for downstream coding agents.
+为下游 coding agent 定义执行可靠性契约。
 
-## Required Outputs
+## 必需输出
 
 - Context contracts
 - Tool contracts
@@ -16,9 +16,9 @@ Define execution reliability contracts for downstream coding agents.
 - Recovery paths
 - Regression cases
 
-## Hard Failures
+## 硬失败
 
-- No tool contract.
-- No recovery path.
-- No trace requirement.
-- Eval cases lack negative cases.
+- 缺少 tool contract。
+- 缺少 recovery path。
+- 缺少 trace requirement。
+- Eval cases 缺少 negative cases。

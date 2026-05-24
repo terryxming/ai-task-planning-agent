@@ -1,10 +1,10 @@
 # Role Council / Decision Log
 
-## Responsibility
+## 职责
 
-Bind roles to output responsibility and record decisions.
+把角色责任绑定到输出字段，并记录关键决策。
 
-## Standing Roles
+## 常设角色
 
 - Product owner
 - Agile planner
@@ -14,7 +14,7 @@ Bind roles to output responsibility and record decisions.
 - Governance owner
 - Opposition reviewer
 
-## Decision Log Fields
+## Decision log 字段
 
 - Decision id
 - Topic
@@ -25,8 +25,8 @@ Bind roles to output responsibility and record decisions.
 - Impacted artifacts
 - Regression risk
 
-## Hard Failures
+## 硬失败
 
-- Roles only comment without owning fields.
-- No challenge recorded for major decisions.
-- Decision has no impacted artifact.
+- 角色只发表评论，没有负责字段。
+- 重大决策没有 challenge。
+- 决策没有 impacted artifact。

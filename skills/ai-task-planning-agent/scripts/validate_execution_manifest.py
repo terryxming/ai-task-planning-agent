@@ -8,6 +8,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from schema_validator import load_schema, validate_schema
+
 
 REQUIRED_FIELDS = [
     "task_goal",
@@ -58,6 +60,7 @@ def validate(task_pack_dir: str | Path) -> dict[str, Any]:
         return {"status": "fail", "errors": errors, "warnings": warnings}
 
     assert manifest is not None
+    errors.extend(validate_schema(manifest, load_schema("execution-manifest.schema.json")))
 
     for field in REQUIRED_FIELDS:
         if field not in manifest:

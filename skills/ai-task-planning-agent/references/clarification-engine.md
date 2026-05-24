@@ -1,23 +1,23 @@
 # Clarification Engine
 
-## Responsibility
+## 职责
 
-Separate facts, opinions, assumptions, unknowns, and blocking questions before planning.
+在进入规划前，区分事实、观点、假设、未知项和阻塞问题。
 
-## Required Outputs
+## 必需输出
 
-- Task goal
-- Non-goals
-- Target downstream AI
-- Known facts
-- Assumptions
-- Open questions
-- Blocking questions
-- Success criteria
-- Failure criteria
+- 任务目标
+- 非目标
+- 目标下游 AI
+- 已知事实
+- 假设
+- 开放问题
+- 阻塞问题
+- 成功标准
+- 失败标准
 
-## Hard Failures
+## 硬失败
 
-- Assumption written as fact.
-- Blocking question ignored.
-- User goal rewritten without evidence.
+- 把假设写成事实。
+- 忽略 blocking question。
+- 没有证据就改写用户目标。

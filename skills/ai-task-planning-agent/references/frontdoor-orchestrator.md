@@ -1,27 +1,27 @@
 # Frontdoor / Orchestrator
 
-## Responsibility
+## 职责
 
-Identify request type, mode, target downstream AI, current state, next state, and recovery action.
+识别请求类型、模式、目标下游 AI、当前状态、下一状态和恢复动作。
 
-## Inputs
+## 输入
 
-- User request
-- Existing task pack, if present
-- Conversation summary
-- Validation results
+- 用户请求
+- 已存在的 task pack，如果有
+- 对话摘要
+- 校验结果
 
-## Outputs
+## 输出
 
-- Request type
-- Mode: light, standard, or deep
-- Current state
-- Next state
-- Recovery action
-- Manifest updates
+- 请求类型
+- 模式：light、standard 或 deep
+- 当前状态
+- 下一状态
+- 恢复动作
+- Manifest 更新项
 
-## Hard Failures
+## 硬失败
 
-- Coding-agent task routed as a generic PRD task.
-- Evaluator failed but the pack is marked delivery-ready.
-- No `package-manifest.json` exists and no light-mode exception is recorded.
+- 把 coding-agent task 错误路由成通用 PRD task。
+- Evaluator 已失败，但 pack 仍被标记为 delivery-ready。
+- 缺少 `package-manifest.json`，且没有记录 light-mode exception。

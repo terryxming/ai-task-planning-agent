@@ -1,17 +1,17 @@
-# Agent Skill Task Example
+# Agent Skill Task 示例
 
-## Rough Skill Idea
+## 粗略 Skill 想法
 
-"Create a Skill that turns vague engineering requests into implementation-ready task packs for Codex."
+“创建一个 Skill，把模糊工程请求转成 Codex 可执行的 task pack。”
 
-## Planning Separation
+## 规划拆分
 
-Product goal: help AI Agent builders produce handoff-ready execution packages.
+Product goal：帮助 AI Agent builder 生成可交接、可验证的执行包。
 
-Agile value plan: define target users, backlog items, stories, DoR, DoD, review, and retro.
+Agile value plan：定义目标用户、backlog、stories、DoR、DoD、review 和 retro。
 
-Harness execution contract: define context, tools, workflow, sandbox rules, test cases, eval cases, trace requirements, recovery paths, and regression cases.
+Harness execution contract：定义 context、tools、workflow、sandbox rules、test cases、eval cases、trace requirements、recovery paths 和 regression cases。
 
-Governance report: record schema version, release checklist status, compatibility impact, risks, and fixture recommendations.
+Governance report：记录 schema version、release checklist status、compatibility impact、risks 和 fixture recommendations。
 
-The JSON manifests remain the source of truth; Markdown files provide review views.
+JSON manifests 保持事实源地位；Markdown 文件只提供审阅视图。

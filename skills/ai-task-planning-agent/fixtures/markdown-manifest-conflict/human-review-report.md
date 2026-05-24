@@ -1,9 +1,9 @@
-# Human Review Report
+# 人工审阅报告
 
-## Summary
+## 摘要
 
-The package is ready for deterministic evaluator review.
+该 pack 已准备好接受 deterministic evaluator review。
 
 ## Waivers
 
-No human waivers are present.
+当前没有 human waivers。

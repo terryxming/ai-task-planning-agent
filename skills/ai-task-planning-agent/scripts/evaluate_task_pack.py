@@ -10,6 +10,7 @@ from typing import Any
 
 from validate_execution_manifest import validate as validate_execution_manifest
 from validate_package_manifest import validate as validate_package_manifest
+from schema_validator import load_schema, validate_schema
 
 
 TOOL_REQUIRED_FIELDS = [
@@ -52,6 +53,7 @@ def validate_tool_contracts(pack_dir: Path) -> list[str]:
         return [load_error]
 
     assert data is not None
+    failures.extend(validate_schema(data, load_schema("tool-contract-matrix.schema.json")))
     tools = data.get("tools")
     if not isinstance(tools, list) or not tools:
         return ["tool-contract-matrix.json tools must be a non-empty array"]
@@ -72,6 +74,9 @@ def validate_eval_plan(pack_dir: Path) -> list[str]:
         return [load_error]
 
     assert data is not None
+    schema_errors = validate_schema(data, load_schema("eval-plan.schema.json"))
+    if schema_errors:
+        return schema_errors
     negative_cases = data.get("negative_cases")
     if not isinstance(negative_cases, list) or not negative_cases:
         return ["eval-plan.json negative_cases must be a non-empty array"]
@@ -119,12 +124,12 @@ def evaluate(task_pack_dir: str | Path) -> dict[str, Any]:
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) != 2:
+    if len(argv) not in (2, 3) or (len(argv) == 3 and argv[2] != "--write-result"):
         print(
             json.dumps(
                 {
                     "status": "fail",
-                    "hard_failures": ["usage: evaluate_task_pack.py <task-pack-dir>"],
+                    "hard_failures": ["usage: evaluate_task_pack.py <task-pack-dir> [--write-result]"],
                     "warnings": [],
                     "release_recommendation": "block",
                 },
@@ -134,6 +139,9 @@ def main(argv: list[str]) -> int:
         return 2
 
     result = evaluate(argv[1])
+    if len(argv) == 3:
+        result_path = Path(argv[1]) / "evaluation-result.json"
+        result_path.write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(json.dumps(result, indent=2))
     return 0 if result["release_recommendation"] == "pass" else 2
 

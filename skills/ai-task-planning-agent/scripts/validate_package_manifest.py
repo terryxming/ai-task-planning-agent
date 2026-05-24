@@ -8,6 +8,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from schema_validator import load_schema, validate_schema
+
 
 REQUIRED_FIELDS = [
     "schema_version",
@@ -22,6 +24,15 @@ REQUIRED_FIELDS = [
     "quality_gates",
     "human_waivers",
     "release_recommendation",
+]
+
+WAIVER_REQUIRED_FIELDS = [
+    "item",
+    "reason",
+    "accepted_risk",
+    "scope",
+    "owner",
+    "expiration_condition",
 ]
 
 REQUIRED_ARTIFACTS = [
@@ -63,6 +74,7 @@ def validate(task_pack_dir: str | Path) -> dict[str, Any]:
         return {"status": "fail", "errors": errors, "warnings": warnings}
 
     assert manifest is not None
+    errors.extend(validate_schema(manifest, load_schema("package-manifest.schema.json")))
 
     for field in REQUIRED_FIELDS:
         if field not in manifest:
@@ -74,6 +86,7 @@ def validate(task_pack_dir: str | Path) -> dict[str, Any]:
 
     manifest_artifacts = manifest.get("artifacts", [])
     if isinstance(manifest_artifacts, list):
+        manifest_paths: set[str] = set()
         for artifact in manifest_artifacts:
             if not isinstance(artifact, dict):
                 errors.append("artifact entries must be objects")
@@ -82,8 +95,12 @@ def validate(task_pack_dir: str | Path) -> dict[str, Any]:
             if not artifact_path:
                 errors.append("artifact entry missing path")
                 continue
+            manifest_paths.add(str(artifact_path))
             if not (pack_dir / str(artifact_path)).exists():
                 errors.append(f"manifest artifact path does not exist: {artifact_path}")
+        for artifact in REQUIRED_ARTIFACTS:
+            if artifact not in manifest_paths:
+                errors.append(f"manifest artifacts missing required path: {artifact}")
     else:
         errors.append("artifacts must be an array")
 
@@ -91,6 +108,16 @@ def validate(task_pack_dir: str | Path) -> dict[str, Any]:
     human_waivers = manifest.get("human_waivers", [])
     if blocking_questions and not human_waivers:
         errors.append("blocking_questions present without human_waivers")
+    if isinstance(human_waivers, list):
+        for index, waiver in enumerate(human_waivers):
+            if not isinstance(waiver, dict):
+                errors.append(f"human_waivers[{index}] must be an object")
+                continue
+            for field in WAIVER_REQUIRED_FIELDS:
+                if not waiver.get(field):
+                    errors.append(f"human_waivers[{index}] missing required field: {field}")
+    else:
+        errors.append("human_waivers must be an array")
 
     status = "fail" if errors else "pass"
     return {"status": status, "errors": errors, "warnings": warnings}

@@ -1,18 +1,18 @@
 # Evaluator / Release Gate
 
-## Responsibility
+## 职责
 
-Block delivery when deterministic requirements fail.
+当确定性要求失败时阻断交付。
 
-## Required Checks
+## 必需检查
 
-- Required files exist.
-- Manifest schema fields exist.
-- Execution manifest fields exist.
-- Tool contracts include side effects, permission, failure modes, retry policy, and rollback policy.
-- Eval plan includes negative cases.
-- Blocking questions have waiver or block release.
+- 必需文件存在。
+- Manifest schema 字段存在并通过 schema-driven 校验。
+- Execution manifest 字段存在并通过 schema-driven 校验。
+- Tool contracts 包含 side effects、permission、failure modes、retry policy、rollback policy 和 audit evidence。
+- Eval plan 包含 negative cases。
+- Blocking questions 必须被结构化 human waiver 覆盖，否则 block release。
 
-## Output
+## 输出
 
-Evaluation result JSON with `status`, `hard_failures`, `warnings`, and `release_recommendation`.
+Evaluation result JSON，包含 `status`、`hard_failures`、`warnings` 和 `release_recommendation`。

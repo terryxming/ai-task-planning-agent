@@ -1,10 +1,10 @@
-# Simple Coding Task Example
+# 简单 Coding Task 示例
 
-## Rough User Request
+## 粗略用户请求
 
-"Add input validation to my CLI and make sure bad config files fail clearly."
+“给我的 CLI 增加输入校验，并让错误配置文件给出清晰失败信息。”
 
-## Expected Task Execution Pack Files
+## 预期 Task Execution Pack 文件
 
 - `package-manifest.json`
 - `task-brief.md`
@@ -17,10 +17,10 @@
 - `governance-report.md`
 - `artifact-index.md`
 
-## Validate the Pack
+## 校验 Pack
 
 ```bash
 python ../../skills/ai-task-planning-agent/scripts/evaluate_task_pack.py ../../skills/ai-task-planning-agent/fixtures/valid-task-pack
 ```
 
-The evaluator should return `release_recommendation: pass` for a complete pack.
+完整 pack 应返回 `release_recommendation: pass`。

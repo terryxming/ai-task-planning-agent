@@ -1,12 +1,12 @@
-# Governance Report
+# 治理报告
 
-## Compatibility
+## 兼容性
 
-The package targets schema version `0.1`.
+该 pack 目标 schema version 为 `0.1`。
 
-## Release Checklist Status
+## Release checklist 状态
 
-- Required files present.
-- Schemas parse.
-- Fixtures include positive and negative cases.
-- Release recommendation is `pass`.
+- 必需文件存在。
+- Schemas 可解析。
+- Fixtures 包含正例和负例。
+- Release recommendation 为 `pass`。

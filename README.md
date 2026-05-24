@@ -1,12 +1,12 @@
 # AI Task Planning Agent
 
-AI Task Planning Agent helps AI Agent builders turn ambiguous tasks into validated `Task Execution Pack` artifacts for downstream coding agents such as Codex and Claude Code.
+AI Task Planning Agent 面向 AI Agent builder，把模糊任务规划为可验证的 `Task Execution Pack`，供 Codex、Claude Code 等下游 coding agent 执行和自检。
 
-The agent does not execute code, connect to production, replace Jira or Linear, or modify existing user skills automatically.
+本项目的非目标很明确：不直接执行用户业务代码，不连接生产环境，不替代 Jira 或 Linear，也不会自动修改用户已有 Skill。
 
-## Output
+## 输出
 
-The primary output is a `Task Execution Pack`:
+核心输出是一个 `Task Execution Pack`：
 
 - `package-manifest.json`
 - `task-brief.md`
@@ -19,26 +19,34 @@ The primary output is a `Task Execution Pack`:
 - `governance-report.md`
 - `artifact-index.md`
 
-Machine-readable JSON files are the source of truth. Markdown files are human review views.
+机器可读 JSON 文件是事实源。Markdown 文件只是人工审阅视图。
 
-## Quick Validation
+## v0.2 新增能力
+
+- 默认中文表达，必要技术术语保留英文。
+- 使用本地 JSON Schema 子集校验器检查 manifest、tool contract 和 eval plan。
+- Human waiver 必须结构化记录豁免项、原因、风险、范围、责任人和过期条件。
+- Evaluator 支持 `--write-result` 写入 `evaluation-result.json`。
+- 保留 `v0.1` tag 作为初始基线。
+
+## 快速验证
 
 ```bash
 python skills/ai-task-planning-agent/scripts/evaluate_task_pack.py skills/ai-task-planning-agent/fixtures/valid-task-pack
 python -m unittest discover tests
 ```
 
-Expected result: the valid fixture passes and the negative fixtures fail for the expected reasons.
+预期结果：valid fixture 通过，negative fixtures 按预期阻断发布。
 
-## Final Verification
+## 最终验证
 
-Run the full test suite from the repository root:
+在仓库根目录运行完整测试：
 
 ```bash
 python -m unittest discover tests
 ```
 
-Run fixture smoke tests from the repository root:
+运行 fixture smoke tests：
 
 ```bash
 python skills/ai-task-planning-agent/scripts/evaluate_task_pack.py skills/ai-task-planning-agent/fixtures/valid-task-pack
@@ -48,4 +56,4 @@ python skills/ai-task-planning-agent/scripts/evaluate_task_pack.py skills/ai-tas
 python skills/ai-task-planning-agent/scripts/evaluate_task_pack.py skills/ai-task-planning-agent/fixtures/markdown-manifest-conflict
 ```
 
-Expected result: `valid-task-pack` exits `0` with `release_recommendation: pass`; each negative fixture exits `2` with `release_recommendation: block`.
+预期结果：`valid-task-pack` exit code 为 `0` 且 `release_recommendation: pass`；每个 negative fixture exit code 为 `2` 且 `release_recommendation: block`。
